@@ -33,6 +33,11 @@ public class PostsRepositoryTest {
         postsRepository.deleteAll();
     }
 
+    /**
+     * data-h2.sql entity 미리 insert한 것 적용되서 기존 test 코드로는 failed 뜸.
+     * 그래서 save하면 맨 마지막 index에 저장되기 때문에 맨 마지막 index를 읽어서 내용 일치하는가에 대한 테스트 코드 작성.
+     */
+
     @Test
     public void 게시글저장_불러오기() {
         //given
@@ -46,7 +51,7 @@ public class PostsRepositoryTest {
         List<Posts> postsList = postsRepository.findAll();
 
         //then
-        Posts posts = postsList.get(0);
+        Posts posts = postsList.get(postsList.size()-1);
         /**
          * JUnit5에서 assertThat()과 is() 사용, hamcrest 라이브러리 포함해서 사용
          * https://hwanud.wordpress.com/2018/09/29/junit5%EC%97%90%EC%84%9C-assertthat%EA%B3%BC-is-%EC%82%AC%EC%9A%A9/
@@ -54,6 +59,12 @@ public class PostsRepositoryTest {
         assertThat(posts.getTitle(), is("테스트 게시글"));
         assertThat(posts.getContent(), is("테스트 본문"));
     }
+
+
+    /**
+     * data-h2.sql entity 미리 insert한 것 적용되서 기존 test 코드로는 failed 뜸.
+     * 그래서 save하면 맨 마지막 index에 저장되기 때문에 맨 마지막 index를 읽어서 내용 일치하는가에 대한 테스트 코드 작성.
+     */
 
     @Test
     public void BaseTimeEntity_등록 (){
@@ -68,7 +79,7 @@ public class PostsRepositoryTest {
         List<Posts> postsList = postsRepository.findAll();
 
         //then
-        Posts posts = postsList.get(0);
+        Posts posts = postsList.get(postsList.size()-1);
         assertThat(posts.getTitle(), is("테스트 게시글"));
         assertTrue(posts.getCreatedDate().isAfter(now));
         assertTrue(posts.getModifiedDate().isAfter(now));
