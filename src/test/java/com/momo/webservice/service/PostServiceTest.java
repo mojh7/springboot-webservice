@@ -38,6 +38,10 @@ public class PostServiceTest {
     /**
      * data-h2.sql entity 미리 insert한 것 적용되서 기존 dto test 코드로는 failed 뜸.
      * 그래서 save하면 맨 마지막 index에 저장되기 때문에 맨 마지막 index를 읽어서 내용 일치하는가에 대한 테스트 코드 작성.
+     *
+     * 스프링 부트에서는 src/test/resources/application.yml이 없을 경우 main의 application.yml 옵션을 그대로 가져와서 사용하게 됨.
+     * 테스트 코드는 외부의 영향 없이 수행되야하기 때문에 test/resources/application.yml 따로 만들어서 insert query가 적용되지 않은 상태로
+     * 테스트 함으로 다시 index 0번 째꺼 검사하는 테스트 코드로 수정.
      */
 
     @Test
@@ -54,7 +58,7 @@ public class PostServiceTest {
 
         //then
         List<Posts> postsList = postsRepository.findAll();
-        Posts posts = postsList.get(postsList.size()-1);
+        Posts posts = postsList.get(0);
         assertThat(posts.getAuthor(), equalTo(dto.getAuthor()));
         assertThat(posts.getContent(), equalTo(dto.getContent()));
         assertThat(posts.getTitle(), equalTo(dto.getTitle()));
