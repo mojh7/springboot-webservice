@@ -93,9 +93,28 @@ public class PostServiceTest {
     @Test
     public void 게시글id_내림차순으로_출력한다(){
         //given
+        PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
+                .author("test@gmail.com")
+                .content("내용 1")
+                .title("타이틀1")
+                .build();
 
+        PostsSaveRequestDto dto2 = PostsSaveRequestDto.builder()
+                .author("test@gmail.com")
+                .content("내용2~~!")
+                .title("타이틀2")
+                .build();
+
+        PostsSaveRequestDto dto3 = PostsSaveRequestDto.builder()
+                .author("test@gmail.com")
+                .content("내용3@@")
+                .title("타이틀3")
+                .build();
 
         //when
+        postsService.save(dto);
+        postsService.save(dto2);
+        postsService.save(dto3);
         List<PostsMainResponseDto> posts = postsRepository.findAllDesc()
                 .map(PostsMainResponseDto::new)
                 .collect(Collectors.toList());
