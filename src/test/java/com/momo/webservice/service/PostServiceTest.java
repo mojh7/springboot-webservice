@@ -88,7 +88,8 @@ public class PostServiceTest {
      *                 .collect(Collectors.toList());
      */
 
-    // test 코드도 postsRepository.findAllDesc() 트랜잭션 처리 있어서 같이 @Transactional readOnly 필요
+    /**
+    // test 코드도 postsRepository.findAllDesc() 트랜잭션 처리 있어서 같이 @Transactional 필요
     @Transactional()
     @Test
     public void 게시글id_내림차순으로_출력한다(){
@@ -126,4 +127,5 @@ public class PostServiceTest {
         assertThat(postsMainResponseDtoFirst.getId(), equalTo(Long.valueOf(posts.size())));
         assertThat(postsMainResponseDtoLast.getId(), equalTo(1L));
     }
+    */
 }
