@@ -15,7 +15,7 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./gradlew clean build --stacktrace"
+script: "./gradlew clean build --info --debug --stacktrace"
 
 # CI 실행 완료시 메일과 슬랙 알람
 notifications:
@@ -24,5 +24,4 @@ notifications:
       - mjh79017901@gmail.com
   slack:
     rooms:
-      - test-8cn7742:GwVyUcsF1m64Ozftimca8VeD#general
       - test-8cn7742:GwVyUcsF1m64Ozftimca8VeD#notificationstest
