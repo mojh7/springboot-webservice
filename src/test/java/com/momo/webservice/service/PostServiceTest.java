@@ -89,11 +89,9 @@ public class PostServiceTest {
      */
 
     // test 코드도 postsRepository.findAllDesc() 트랜잭션 처리 있어서 같이 @Transactional readOnly 필요
-    @Transactional(readOnly = true)
+    @Transactional()
     @Test
     public void 게시글id_내림차순으로_출력한다(){
-
-        /**
         //given
         PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
                 .author("test@gmail.com")
@@ -117,7 +115,7 @@ public class PostServiceTest {
         postsService.save(dto);
         postsService.save(dto2);
         postsService.save(dto3);
-         **/
+
         List<PostsMainResponseDto> posts = postsRepository.findAllDesc()
                 .map(PostsMainResponseDto::new)
                 .collect(Collectors.toList());
