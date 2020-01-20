@@ -56,8 +56,6 @@ notifications:
   #email:
   #  recipients:
   #    - mjh79017901@gmail.com
-  slack:
-    rooms:
-      - test-8cn7742:GwVyUcsF1m64Ozftimca8VeD#notificationstest
-
-# A
+  #slack:
+  #  rooms:
+  #    - test-8cn7742:GwVyUcsF1m64Ozftimca8VeD#notificationstest
