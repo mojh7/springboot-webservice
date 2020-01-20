@@ -2,6 +2,7 @@ package com.momo.webservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing // JPA Auditing 활성화
@@ -11,5 +12,9 @@ public class Application {
             + "classpath:application.yml,"
             + "/app/config/springboot-webservice/real-application.yml";
 
-    public static void main(String[] args) { SpringApplication.run(Application.class, args); }
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Application.class)
+                .properties(APPLICATION_LOCATIONS)
+                .run(args);
+    }
 }
